@@ -558,7 +558,23 @@ class MMApi:
     #def get_team_by_name() #NOT_IMPLEMENTED
     #def search_teams() #NOT_IMPLEMENTED
     #def exists_team() #NOT_IMPLEMENTED
-    #def get_teams_for_user() #NOT_IMPLEMENTED
+
+
+
+    def get_teams_for_user(self, user_id, **kwargs):
+        """
+        Get a user's teams
+
+        Args:
+            user_id (string): user_id.
+
+        Returns:
+            list: of teams
+
+        Raises:
+            ApiException: Passed on from lower layers.
+        """
+        return self._get("/v4/users/"+user_id+"/teams", **kwargs)
 
 
 

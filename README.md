@@ -166,7 +166,7 @@ Ordered by https://api.mattermost.com/
   + *``get_team_by_name() #NOT_IMPLEMENTED``*
   + *``search_teams() #NOT_IMPLEMENTED``*
   + *``exists_team() #NOT_IMPLEMENTED``*
-  + *``get_teams_for_user() #NOT_IMPLEMENTED``*
+  + **``get_teams_for_user()``**
   + **``get_team_members (team_id, **kwargs)``**
   + **``add_user_to_team (team_id, user_id, **kwargs)``**
   + *``add_user_to_team_from_invite() #NOT_IMPLEMENTED``*
