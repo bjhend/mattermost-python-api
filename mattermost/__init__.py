@@ -1219,12 +1219,14 @@ class MMApi:
 
 
 
-    def get_posts_for_channel(self, channel_id, **kwargs):
+    def get_posts_for_channel(self, channel_id, after=None, before=None, **kwargs):
         """
         Generator: Get a page of posts in a channel. Use the query parameters to modify the behaviour of this endpoint.
 
         Args:
             channel_id (string): The channel ID to iterate over.
+            after (string, optional): A post id to select the posts that came after this one
+            before (string, optional): A post id to select the posts that came before this one
 
         Returns:
             generates: Post.
@@ -1234,7 +1236,7 @@ class MMApi:
         """
         page = 0
         while True:
-            data_page = self._get("/v4/channels/"+channel_id+"/posts", params={"page":str(page)}, **kwargs)
+            data_page = self._get("/v4/channels/"+channel_id+"/posts", params={"page":str(page), "after":after, "before":before}, **kwargs)
 
             if data_page["order"] == []:
                 break
