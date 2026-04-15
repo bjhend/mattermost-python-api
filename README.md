@@ -220,7 +220,7 @@ Ordered by https://api.mattermost.com/
   + **``get_post (post_id, **kwargs)``**
   + **``delete_post (post_id, **kwargs)``**
   + **``patch_post (post_id, message=None, is_pinned=None, props=None, **kwargs)``**
-  + **``get_posts_for_channel (channel_id, **kwargs)``**
+  + **``get_posts_for_channel (channel_id, after=None, before=None, **kwargs)``**
 + **FILES**
   + **``upload_file (channel_id, filepath, **kwargs)``**
   + **``get_file (file_id, **kwargs)``**
