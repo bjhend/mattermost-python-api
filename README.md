@@ -177,7 +177,7 @@ Ordered by https://api.mattermost.com/
   + *``get_team_members_by_id() #NOT_IMPLEMENTED``*
   + *``get_team_stats() #NOT_IMPLEMENTED``*
   + *``regenerate_team_invite_id() #NOT_IMPLEMENTED``*
-  + *``get_team_icon() #NOT_IMPLEMENTED``*
+  + **``get_team_icon(team_id, **kwargs)**
   + *``set_team_icon() #NOT_IMPLEMENTED``*
   + *``remove_team_icon() #NOT_IMPLEMENTED``*
   + *``update_team_members_roles() #NOT_IMPLEMENTED``*

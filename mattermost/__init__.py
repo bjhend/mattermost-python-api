@@ -654,7 +654,33 @@ class MMApi:
     #def get_team_members_by_id() #NOT_IMPLEMENTED
     #def get_team_stats() #NOT_IMPLEMENTED
     #def regenerate_team_invite_id() #NOT_IMPLEMENTED
-    #def get_team_icon() #NOT_IMPLEMENTED
+
+
+
+    def get_team_icon(self, team_id, **kwargs):
+        """
+        Get a team's icon if present
+
+        How to handle the return value assuming it is called resp:
+
+        Check if resp.ok is True. If not check resp.status_code. If it is 404
+        or 501 there is no specific icon. Other values are possible. Check
+        resp.text for detailed error message.
+
+        If resp.ok is True, resp.content contains the icon's binary image data.
+        resp.headers['content-type'] contains the MIME type of the image, for
+        example 'image/png'.
+
+        Args:
+            team_id (string): team_id to get icon for
+
+        Returns:
+            requests.Response object, see above how to handle it
+        """
+        return self._get("/v4/teams/"+team_id+"/image", raw=True, **kwargs)
+
+
+
     #def set_team_icon() #NOT_IMPLEMENTED
     #def remove_team_icon() #NOT_IMPLEMENTED
     #def update_team_members_roles() #NOT_IMPLEMENTED
