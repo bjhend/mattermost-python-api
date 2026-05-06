@@ -22,7 +22,21 @@ class ApiException(Exception):
 
 
 class MMApi:
-    """Mattermost API v4 bindings."""
+    """Mattermost API v4 bindings.
+
+    A note on methods that return an image:
+
+        These functions return a requests.Response object. Supposed we call it resp,
+        this is how to handle it.
+
+        If resp.ok is False, there is no image available. Check resp.status_code
+        and resp.text for details.
+
+        If resp.ok is True, resp.content contains the image's binary image data.
+        resp.headers['content-type'] contains the MIME type of the image, for
+        example 'image/png'.
+
+    """
 
     def __init__(self, url):
         self._url = url
@@ -355,7 +369,26 @@ class MMApi:
 
     #def update_user_roles() #NOT_IMPLEMENTED
     #def update_user_active_status() #NOT_IMPLEMENTED
-    #def get_user_profile_image() #NOT_IMPLEMENTED
+
+
+
+    def get_user_profile_image(self, user_id, **kwargs):
+        """
+        Get profile image of a user.
+
+        Args:
+            user_id (string): User whose image is requested
+
+        Returns:
+            requests.Response object, see class description how to handle it
+
+        Raises:
+            ApiException: Passed on from lower layers.
+        """
+        return self._get("/v4/users/"+user_id+"/image", raw=True, **kwargs)
+
+
+
     #def set_user_profile_image() #NOT_IMPLEMENTED
     #def delete_user_profile_image() #NOT_IMPLEMENTED
     #def get_user_default_profile_image() #NOT_IMPLEMENTED
@@ -677,21 +710,11 @@ class MMApi:
         """
         Get a team's icon if present
 
-        How to handle the return value assuming it is called resp:
-
-        Check if resp.ok is True. If not check resp.status_code. If it is 404
-        or 501 there is no specific icon. Other values are possible. Check
-        resp.text for detailed error message.
-
-        If resp.ok is True, resp.content contains the icon's binary image data.
-        resp.headers['content-type'] contains the MIME type of the image, for
-        example 'image/png'.
-
         Args:
             team_id (string): team_id to get icon for
 
         Returns:
-            requests.Response object, see above how to handle it
+            requests.Response object, see class description how to handle it
         """
         return self._get("/v4/teams/"+team_id+"/image", raw=True, **kwargs)
 

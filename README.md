@@ -119,7 +119,7 @@ Ordered by https://api.mattermost.com/
   + **``patch_user (user_id, props=None, **kwargs)``**
   + *``update_user_roles() #NOT_IMPLEMENTED``*
   + *``update_user_active_status() #NOT_IMPLEMENTED``*
-  + *``get_user_profile_image() #NOT_IMPLEMENTED``*
+  + **``get_user_profile_image()``**
   + *``set_user_profile_image() #NOT_IMPLEMENTED``*
   + *``delete_user_profile_image() #NOT_IMPLEMENTED``*
   + *``get_user_default_profile_image() #NOT_IMPLEMENTED``*
