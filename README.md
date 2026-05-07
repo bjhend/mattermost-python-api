@@ -226,7 +226,9 @@ Ordered by https://api.mattermost.com/
   + **``get_file (file_id, **kwargs)``**
 + **PREFERENCES** #NOT_IMPLEMENTED
 + **STATUS** #NOT_IMPLEMENTED
-+ **EMOJI** #NOT_IMPLEMENTED
++ **EMOJI**
+  + **``get_list_of_custom_emojis(self, **kwargs)``**
+  + **``get_custom_emoji_image(self, emoji_id, **kwargs)``**
 + **REACTIONS**
   + **``create_reaction (user_id, post_id, emoji_name, **kwargs)``**
 + **WEBHOOKS**

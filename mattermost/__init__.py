@@ -1340,7 +1340,50 @@ class MMApi:
 #+ **STATUS** #NOT_IMPLEMENTED
 
 ################################################
-#+ **EMOJI** #NOT_IMPLEMENTED
+#+ **EMOJI**
+
+
+    def get_list_of_custom_emojis(self, **kwargs):
+        """
+        Generator: Get an iterator returning all custom emojis
+
+        Returns:
+            generates: Emoji
+
+        Raises:
+            ApiException: Passed on from lower layers.
+        """
+
+        page = 0
+        while True:
+            emojis_page = self._get("/v4/emoji", params={"page":str(page)}, **kwargs)
+
+            if not emojis_page:
+                break
+
+            for emoji in emojis_page:
+                yield emoji
+
+            page += 1
+
+
+
+    def get_custom_emoji_image(self, emoji_id, **kwargs):
+        """
+        Get emoji image.
+
+        Args:
+            emoji_id (string): Emoji whose image is requested
+
+        Returns:
+            requests.Response object, see class description how to handle it
+
+        Raises:
+            ApiException: Passed on from lower layers.
+        """
+        return self._get("/v4/emoji/"+emoji_id+"/image", raw=True, **kwargs)
+
+
 
 ################################################
 #+ **REACTIONS**
