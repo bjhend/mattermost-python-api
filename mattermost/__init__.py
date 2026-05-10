@@ -1268,6 +1268,33 @@ class MMApi:
 
 
 
+    def get_thread(self, post_id, direction='up', **kwargs):
+        """
+        Generator: Get all posts in the thread post_id belongs to in the given direction
+
+        Args:
+            post_id:   ID of the post in the thread to start from
+            direction: either 'up' or 'down'
+
+        Returns:
+            generates: Posts in the thread
+        """
+        curr_post_id = post_id
+        while curr_post_id:
+            data_page = self._get("/v4/posts/"+curr_post_id+"/thread", params={"direction":direction}, **kwargs)
+            for pid in data_page['order']:
+                yield data_page['posts'][pid]
+
+            if not data_page['has_next']:
+                curr_post_id = None
+            else:
+                if 'up' == direction:
+                    curr_post_id = data_page['next_post_id']
+                else:
+                    curr_post_id = data_page['prev_post_id']
+
+
+
     def get_posts_for_channel(self, channel_id, **kwargs):
         """
         Generator: Get a page of posts in a channel. Use the query parameters to modify the behaviour of this endpoint.
