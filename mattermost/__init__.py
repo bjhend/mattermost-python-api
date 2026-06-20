@@ -563,18 +563,19 @@ class MMApi:
 
     def get_teams_for_user(self, user_id, **kwargs):
         """
-        Get a user's teams
+        Generator: Get a user's teams
 
         Args:
-            user_id (string): user_id.
+            team_id (string): team to get channels from.
 
         Returns:
-            list: of teams
+            generates: Team.
 
         Raises:
             ApiException: Passed on from lower layers.
         """
-        return self._get("/v4/users/"+user_id+"/teams", **kwargs)
+        for team in self._get("/v4/users/"+user_id+"/teams", **kwargs):
+            yield team
 
 
 
